@@ -3,16 +3,36 @@ import pandas as pd
 from format import process_contracts
 
 st.title("Excel Formatter")
+st.markdown(
+    """
+    <style>
+    p {
+        font-size: 20px !important;
+    }
+    input {
+        font-size: 20px !important;
+    }
+    </style>
+    """,
+    unsafe_allow_html=True,
+)
 
 uploaded_file = st.file_uploader("Upload Excel File", type=["xlsx"])
 
 if uploaded_file is not None:
     raw_df = pd.read_excel(uploaded_file)
 
-    start_id = st.number_input("Enter last number from previous csv file(If you are at the start of the month use 0)", value = 0, step = 1)
+    start_id = st.number_input(
+        "Enter last number from previous csv file(If you are at the start of the month use 0)",
+        value=0,
+        step=1,
+    )
     csv_data = process_contracts(raw_df, start_id)
 
-    output_filename = st.text_input("Name your file(Press Enter for changes to apply):", value="formatted_contracts.csv")
+    output_filename = st.text_input(
+        "Name your file(Press Enter for changes to apply):",
+        value="formatted_contracts.csv",
+    )
 
     if not output_filename.endswith(".csv"):
         output_filename += ".csv"
