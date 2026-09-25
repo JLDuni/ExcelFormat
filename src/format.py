@@ -1,7 +1,7 @@
 import pandas as pd
 
 
-def process_contracts(df):
+def process_contracts(df, start_id):
     df = df.rename(
         columns={
             "Matrícula": "matricula",
@@ -17,7 +17,10 @@ def process_contracts(df):
         r"^([A-Z0-9]{2})-([A-Z0-9]{2})-([A-Z0-9]{2})$", r"\1\3-\2", regex=True
     )
 
-    columns_keep = ["matricula", "data_inicio", "data_fim"]
-    df_formated = df[columns_keep]
+    df["num_fatura"] = ""
+
+    columns_keep = ["num_fatura", "objeto", "matricula", "data_inicio", "data_fim"]
+
+    df["objeto"] = range(start_id + 1, start_id + 1 + len(df))
 
     return df[columns_keep].to_csv(index=False).encode('utf-8')
