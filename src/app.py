@@ -23,7 +23,7 @@ if uploaded_file is not None:
     raw_df = pd.read_excel(uploaded_file)
 
     start_id = st.number_input(
-        "Enter last number from previous csv file(If you are at the start of the month use 0)",
+        "Enter last number from previous csv file(If you are at the start of the month use 0):",
         value=0,
         step=1,
     )
