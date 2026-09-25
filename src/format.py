@@ -23,4 +23,4 @@ def process_contracts(df, start_id):
 
     df["objeto"] = range(start_id + 1, start_id + 1 + len(df))
 
-    return df[columns_keep].to_csv(index=False).encode('utf-8')
+    return df[columns_keep].to_csv(index=False).encode("utf-8")
